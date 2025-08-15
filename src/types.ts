@@ -199,5 +199,3 @@ export interface ImageGenerationResponseV1 {
     total: number;
   };
 }
-
-}

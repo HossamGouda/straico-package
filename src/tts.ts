@@ -37,7 +37,7 @@ export async function getElevenLabsVoices(
 export async function createTextToSpeech(
   apiKey: string,
   options: TTSOptions
-): Promise<any> {
+): Promise<Blob> {
   const url = 'https://api.straico.com/v1/tts/create';
   const headers = {
     Authorization: `Bearer ${apiKey}`,
