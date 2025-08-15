@@ -2,7 +2,7 @@ import { getModels } from './models';
 import { getPromptCompletion } from './promptCompletion';
 import { getUserInfo } from './userInfo';
 import { uploadFile } from './fileUpload';
-import { generateImage } from './imageGeneration';
+import { generateImage, generateImageV1 } from './imageGeneration';
 import {
   ApiResponse,
   PromptCompletionOptions,
@@ -10,7 +10,42 @@ import {
   CompletionChoice,
   ModelCompletion,
   PromptCompletionResponse,
+  Model,
+  UserInfo,
+  FileUploadResponse,
+  ImageGenerationResponse,
+  Rag,
+  CreateRagOptions,
+  RagPromptOptions,
+  RagCompletionResponse,
+  Agent,
+  CreateAgentOptions,
+  UpdateAgentOptions,
+  AgentPromptOptions,
+  ImageGenerationOptionsV1,
+  ImageGenerationResponseV1,
+  Voice,
+  TTSOptions,
+  ImageToVideoOptions,
+  VideoGenerationResponse,
 } from './types';
+import {
+  createRag,
+  updateRag,
+  deleteRag,
+  getRagPromptCompletion,
+} from './rag';
+import {
+  createAgent,
+  listAgents,
+  getAgentDetails,
+  updateAgent,
+  deleteAgent,
+  addRagToAgent,
+  getAgentPromptCompletion,
+} from './agent';
+import { getElevenLabsVoices, createTextToSpeech } from './tts';
+import { generateImageToVideo } from './video';
 
 export {
   getModels,
@@ -24,4 +59,37 @@ export {
   CompletionChoice,
   ModelCompletion,
   PromptCompletionResponse,
+  Model,
+  UserInfo,
+  FileUploadResponse,
+  ImageGenerationResponse,
+  Rag,
+  CreateRagOptions,
+  RagPromptOptions,
+  RagCompletionResponse,
+  createRag,
+  updateRag,
+  deleteRag,
+  getRagPromptCompletion,
+  Agent,
+  CreateAgentOptions,
+  UpdateAgentOptions,
+  AgentPromptOptions,
+  createAgent,
+  listAgents,
+  getAgentDetails,
+  updateAgent,
+  deleteAgent,
+  addRagToAgent,
+  getAgentPromptCompletion,
+  getElevenLabsVoices,
+  createTextToSpeech,
+  generateImageToVideo,
+  generateImageV1,
+  ImageGenerationOptionsV1,
+  ImageGenerationResponseV1,
+  Voice,
+  TTSOptions,
+  ImageToVideoOptions,
+  VideoGenerationResponse,
 };

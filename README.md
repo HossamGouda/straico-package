@@ -113,13 +113,128 @@ generateImage(apiKey, {
 })
   .then((response) => console.log('Success:', response.data))
   .catch((error) => console.error('Error:', error.message));
+
+## Agent Management
+
+The library provides full support for creating, managing, and interacting with Agents. Agents can be associated with RAGs to create powerful, customized assistants.
+
+```javascript
+import { createAgent, addRagToAgent, getAgentPromptCompletion } from 'straico-api';
+
+async function useAgent(apiKey, ragId) {
+  try {
+    // 1. Create a new Agent
+    console.log('Creating agent...');
+    const agentResponse = await createAgent(apiKey, {
+      name: 'My Custom Agent',
+      custom_prompt: 'You are an expert on the provided documents.',
+      default_llm: 'anthropic/claude-3.5-sonnet',
+    });
+    const agentId = agentResponse.data._id;
+    console.log(`Agent created with ID: ${agentId}`);
+
+    // 2. Associate the Agent with a RAG
+    console.log('Associating RAG with agent...');
+    await addRagToAgent(apiKey, agentId, ragId);
+    console.log('RAG associated successfully.');
+
+    // 3. Query the Agent
+    console.log('Querying agent...');
+    const promptResponse = await getAgentPromptCompletion(apiKey, agentId, {
+      prompt: 'What is the main topic of my documents?',
+    });
+
+    console.log('Answer:', promptResponse.data.answer);
+
+  } catch (error) {
+    console.error('An error occurred with the agent workflow:', error);
+  }
+}
+
+// Example usage:
+// const myRagId = 'your-rag-id-here';
+// useAgent(process.env.STRAICO_API_KEY, myRagId);
 ```
+
+### Image Generation (v1)
+
+A new, upgraded image generation endpoint is available with different models and a new response structure.
+
+```javascript
+import { generateImageV1 } from 'straico-api';
+
+async function generateV1Image(apiKey) {
+  try {
+    const response = await generateImageV1(apiKey, {
+      model: 'fal-ai/flux/dev',
+      description: 'A futuristic cityscape',
+      size: 'landscape',
+      variations: 1,
+    });
+    console.log('Image v1 response:', response.data);
+  } catch (error) {
+    console.error('Error generating v1 image:', error);
+  }
+}
+```
+
+## Additional Generative AI
+
+The library also supports Text-to-Speech (TTS) and Image-to-Video generation.
+
+### Text-to-Speech (TTS)
+
+```javascript
+import { createTextToSpeech } from 'straico-api';
+
+async function generateSpeech(apiKey) {
+  try {
+    const audioBlob = await createTextToSpeech(apiKey, {
+      model: 'eleven_multilingual_v2',
+      text: 'Hello from the world of AI!',
+      voice_id: 'voice-id-from-elevenlabslist', // Get this from getElevenLabsVoices()
+    });
+    // You can now play or save the audioBlob
+    console.log('Audio generated:', audioBlob);
+  } catch (error) {
+    console.error('Error generating speech:', error);
+  }
+}
+```
+
+### Image-to-Video
+
+```javascript
+import { generateImageToVideo } from 'straico-api';
+
+async function generateVideo(apiKey) {
+  try {
+    const response = await generateImageToVideo(apiKey, {
+      model: 'fal-ai/kling-video/v2.1/master/image-to-video',
+      description: 'A beautiful sunset',
+      size: 'landscape',
+      duration: 5,
+      image_url: 'your-image-url-here',
+    });
+    console.log('Video generation response:', response.data);
+  } catch (error) {
+    console.error('Error generating video:', error);
+  }
+}
+```
+
+## Running the Comprehensive Test Script
+
+For development and testing purposes, a comprehensive test script is available in the `straico-api-test` directory. This script, `full-api-test.js`, runs through all major functions of the library to ensure they work correctly with a live API key.
+
+To run the test:
+1. Navigate to the test directory: `cd straico-api-test`
+2. Create a `.env` file and add your API key: `STRAICO_API_KEY="your_key_here"`
+3. Run the script: `node full-api-test.js`
 
 ## Documentation
 
 ```
-
-For more detailed information on each function, the available options, and the structure of the returned data, please refer to the [Straico API Documentation](https://documenter.getpostman.com/view/5900072/2s9YyzddrR).
 
 ## Contributing
 
