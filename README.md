@@ -7,13 +7,24 @@ The official, lightweight JavaScript & TypeScript client for the [Straico API](h
 
 It is designed to be fully typed, easy to use, and works seamlessly in both server-side and client-side environments.
 
-## Features
+## About Straico
 
-- 🤖 **Prompt Completion:** Access powerful language models like GPT-3.5 and more.
-- 🎨 **Image Generation:** Create stunning images with models like DALL-E 3.
-- 📂 **File Uploads:** Seamlessly upload files for use with the API.
-- 📈 **Model Information:** Fetch a list of currently available models.
-- 👤 **User Information:** Retrieve details about your user account.
+The `straico-api` library gives you direct access to the powerful and comprehensive features of the Straico platform, a cohesive, centralized workspace designed to streamline AI-powered workflows.
+
+### 🚀 Core AI Capabilities
+*   **Multi-Modal AI Workspace**: Access advanced models for text, images, and audio in one unified platform.
+*   **30+ LLMs in One Chat**: Choose from a wide range of cutting-edge models and run up to 4 parallel chats to compare responses side-by-side.
+*   **State-of-the-Art Image Generation**: Utilize powerful models like FLUX 1.1 Pro, DALL-E 3, and Stable Diffusion for marketing, art, and data visualization.
+*   **Multimedia Context**: Enhance your prompts by adding images, PDFs, text files, Excel, PowerPoint, audio, video, and even YouTube links.
+
+### 🧑‍💻 Developer-Focused Tools
+*   **Comprehensive API Access**: Leverage scalable and flexible endpoints for everything from simple apps to complex systems.
+*   **Custom Templates & Prompt Library**: Speed up development with reusable, specialized prompts and AI-powered suggestions to refine your inputs.
+*   **Integration Ecosystem**: Connect with platforms like ActivePieces, Albato, and Pabbly to create unified workflows across your existing tools.
+
+### 🤝 Community & Support
+*   **Active Community Hub**: Join a network of professionals, developers, and enthusiasts to get expert guidance, feedback, and shared resources.
+*   **Responsive Support**: Get reliable assistance during integration and development, backed by continuous platform improvements.
 
 ## Why Use This Library?
 
