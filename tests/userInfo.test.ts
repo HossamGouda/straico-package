@@ -38,9 +38,7 @@ describe('getUserInfo', () => {
       method: 'GET',
       headers,
     });
-    expect(result).toBe(
-      JSON.stringify({ id: '123', name: 'John Doe' }, null, 2)
-    );
+    expect(result).toEqual({ data: { id: '123', name: 'John Doe' } });
   });
 
   it('should throw an error if the network response is not ok', async () => {

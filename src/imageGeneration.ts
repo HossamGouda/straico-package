@@ -1,16 +1,9 @@
-import { ApiResponse } from './utils';
-
-interface ImageGenerationOptions {
-  model: string;
-  description: string;
-  size: string;
-  variations: number;
-}
+import { ApiResponse, ImageGenerationOptions, ImageGenerationResponse } from './types';
 
 export async function generateImage(
   apiKey: string,
   options: ImageGenerationOptions
-): Promise<ApiResponse<JSON>> {
+): Promise<ApiResponse<ImageGenerationResponse>> {
   const url = 'https://api.straico.com/v0/image/generation';
   const data = {
     model: options.model,
@@ -19,17 +12,22 @@ export async function generateImage(
     variations: options.variations,
   };
 
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  }).then((response) => {
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
     if (!response.ok) {
       throw new Error('Network response was not ok: ' + response.statusText);
     }
     return response.json();
-  });
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }

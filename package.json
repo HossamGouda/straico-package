@@ -1,7 +1,12 @@
 {
   "name": "straico-api",
   "version": "1.0.0",
+  "description": "A lightweight and easy-to-use TypeScript library for interacting with the Straico API.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "ts-node src/index.ts",
@@ -9,8 +14,27 @@
     "lint": "eslint src --ext .ts",
     "format": "prettier --write src/**/*.ts",
     "watch": "tsc --watch",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HossamGouda/straico-package"
+  },
+  "keywords": [
+    "straico",
+    "api",
+    "ai",
+    "gpt",
+    "dall-e",
+    "openai"
+  ],
+  "author": "Hossam Gouda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HossamGouda/straico-package/issues"
+  },
+  "homepage": "https://github.com/HossamGouda/straico-package#readme",
   "devDependencies": {
     "@types/jest": "^27.5.2",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -20,9 +44,8 @@
     "prettier": "^2.4.1",
     "ts-jest": "^27.1.5",
     "ts-node": "^10.9.2",
-    "typescript": "^4.9.5"
-  },
-  "dependencies": {
+    "typescript": "^4.9.5",
     "dotenv": "^16.4.7"
-  }
+  },
+  "dependencies": {}
 }

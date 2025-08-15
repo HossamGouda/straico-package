@@ -63,7 +63,23 @@ describe('getPromptCompletion', () => {
         }),
       }
     );
-    expect(result).toBe('test content');
+    expect(result).toEqual({
+      data: {
+        completions: {
+          'test-model': {
+            completion: {
+              choices: [
+                {
+                  message: {
+                    content: 'test content',
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    });
   });
 
   it('should throw an error if the response is not ok', async () => {

@@ -30,7 +30,7 @@ describe('getModels', () => {
     });
 
     const result = await getModels(apiKey);
-    expect(result).toBe(JSON.stringify(mockData, null, 2));
+    expect(result).toEqual(mockData);
     expect(fetch).toHaveBeenCalledWith(url, { method: 'GET', headers });
   });
 
@@ -73,7 +73,7 @@ describe('getModels', () => {
     });
 
     const result = await getModels(apiKey);
-    expect(result).toBe(JSON.stringify(mockData, null, 2));
+    expect(result).toEqual(mockData);
     expect(fetch).toHaveBeenCalledWith(url, { method: 'GET', headers });
   });
 
@@ -85,7 +85,7 @@ describe('getModels', () => {
     });
 
     const result = await getModels(apiKey);
-    expect(result).toBe(JSON.stringify(mockData, null, 2));
+    expect(result).toEqual(mockData);
     expect(fetch).toHaveBeenCalledWith(url, { method: 'GET', headers });
   });
 });

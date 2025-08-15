@@ -1,6 +1,7 @@
-import { ApiResponse, buildHeaders } from './utils';
+import { ApiResponse, Model } from './types';
+import { buildHeaders } from './utils';
 
-export async function getModels(apiKey: string): Promise<string> {
+export async function getModels(apiKey: string): Promise<ApiResponse<Model[]>> {
   const url = 'https://api.straico.com/v1/models';
   const headers = buildHeaders(apiKey);
 
@@ -9,8 +10,8 @@ export async function getModels(apiKey: string): Promise<string> {
     if (!response.ok) {
       throw new Error(`Error fetching models: ${response.statusText}`);
     }
-    const data: ApiResponse<JSON> = await response.json();
-    return JSON.stringify(data, null, 2);
+    const data: ApiResponse<Model[]> = await response.json();
+    return data;
   } catch (error) {
     console.error(error);
     throw error;

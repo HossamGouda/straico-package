@@ -1,6 +1,7 @@
-import { ApiResponse, buildHeaders } from './utils';
+import { ApiResponse, UserInfo } from './types';
+import { buildHeaders } from './utils';
 
-export async function getUserInfo(apiKey: string): Promise<string> {
+export async function getUserInfo(apiKey: string): Promise<ApiResponse<UserInfo>> {
   const url = 'https://api.straico.com/v0/user';
   const headers = buildHeaders(apiKey);
 
@@ -14,8 +15,8 @@ export async function getUserInfo(apiKey: string): Promise<string> {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
 
-    const data: ApiResponse<JSON> = await response.json();
-    return JSON.stringify(data.data, null, 2);
+    const data: ApiResponse<UserInfo> = await response.json();
+    return data;
   } catch (error) {
     console.error(error);
     throw error;

@@ -10,12 +10,6 @@ npm install straico-api
 
 ## Usage
 
-First, you need to set up your API key. Create a `.env` file in the root of your project and add your Straico API key:
-
-```env
-STRAICO_API_KEY="your_api_key_here"
-```
-
 ### Importing the Library
 
 You can import the library functions as follows:
@@ -28,29 +22,27 @@ import {
   uploadFile,
   generateImage,
 } from 'straico-api';
-import dotenv from 'dotenv';
 
-dotenv.config();
-const apiKey = process.env.STRAICO_API_KEY;
-
-if (!apiKey) {
-  throw new Error('API key is not defined');
-}
+const apiKey = "your_api_key_here";
 ```
+
+### Browser Usage
+
+This package can be used in a browser environment. The `uploadFile` function is specifically designed to work with the browser's `File` object.
 
 ### Functions
 
-#### `getModels(apiKey: string): Promise<string>`
+#### `getModels(apiKey: string): Promise<ApiResponse<any>>`
 
 Fetches the available models from the Straico API.
 
 ```ts
 getModels(apiKey)
-  .then((models) => console.log(models))
+  .then((response) => console.log(response.data))
   .catch((error) => console.error('Error fetching models:', error));
 ```
 
-#### `getPromptCompletion(apiKey: string, options: PromptCompletionOptions): Promise<string>`
+#### `getPromptCompletion(apiKey: string, options: PromptCompletionOptions): Promise<ApiResponse<PromptCompletionResponse>>`
 
 Fetches a prompt completion from the Straico API.
 
@@ -59,21 +51,21 @@ getPromptCompletion(apiKey, {
   models: ['openai/gpt-3.5-turbo-0125'],
   message: 'Hello!',
 })
-  .then((response) => console.log(response))
+  .then((response) => console.log(response.data))
   .catch((error) => console.error('Error fetching prompt completion:', error));
 ```
 
-#### `getUserInfo(apiKey: string): Promise<string>`
+#### `getUserInfo(apiKey: string): Promise<ApiResponse<any>>`
 
 Fetches user information from the Straico API.
 
 ```ts
 getUserInfo(apiKey)
-  .then((userInfo) => console.log(userInfo))
+  .then((response) => console.log(response.data))
   .catch((error) => console.error('Error fetching user info:', error));
 ```
 
-#### `uploadFile(apiKey: string, file: File): Promise<ApiResponse<JSON>>`
+#### `uploadFile(apiKey: string, file: File): Promise<ApiResponse<any>>`
 
 Uploads a file to the Straico API.
 
@@ -83,11 +75,11 @@ const fileInput = document.querySelector(
 ) as HTMLInputElement;
 if (fileInput.files.length > 0) {
   const file = fileInput.files[0];
-  uploadFile(apiKey, file).then((response) => console.log(response));
+  uploadFile(apiKey, file).then((response) => console.log(response.data));
 }
 ```
 
-#### `generateImage(apiKey: string, options: ImageGenerationOptions): Promise<ApiResponse<JSON>>`
+#### `generateImage(apiKey: string, options: ImageGenerationOptions): Promise<ApiResponse<any>>`
 
 Generates an image using the Straico API.
 
@@ -99,45 +91,19 @@ const options = {
   variations: 2,
 };
 
-generateImage(apiKey, options).then((response) => console.log(response));
+generateImage(apiKey, options).then((response) => console.log(response.data));
 ```
 
 ### Types
 
-#### `ApiResponse<T>`
+This package exports the following types:
 
-Represents the structure of an API response.
-
-```ts
-interface ApiResponse<T> {
-  data: T;
-  success: boolean;
-}
-```
-
-#### `PromptCompletionOptions`
-
-Options for fetching a prompt completion.
-
-```ts
-interface PromptCompletionOptions {
-  models: string[];
-  message: string;
-}
-```
-
-#### `ImageGenerationOptions`
-
-Options for generating an image.
-
-```ts
-interface ImageGenerationOptions {
-  model: string;
-  description: string;
-  size: string;
-  variations: number;
-}
-```
+- `ApiResponse<T>`
+- `PromptCompletionOptions`
+- `ImageGenerationOptions`
+- `CompletionChoice`
+- `ModelCompletion`
+- `PromptCompletionResponse`
 
 ## License
 

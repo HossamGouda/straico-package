@@ -1,32 +1,14 @@
-import { ApiResponse, buildHeaders } from './utils';
-
-interface PromptCompletionOptions {
-  models: string[];
-  message: string;
-}
-
-interface CompletionChoice {
-  message: {
-    content: string;
-  };
-}
-
-interface ModelCompletion {
-  completion: {
-    choices: CompletionChoice[];
-  };
-}
-
-interface PromptCompletionResponse {
-  completions: {
-    [model: string]: ModelCompletion;
-  };
-}
+import {
+  ApiResponse,
+  PromptCompletionOptions,
+  PromptCompletionResponse,
+} from './types';
+import { buildHeaders } from './utils';
 
 export async function getPromptCompletion(
   apiKey: string,
   options: PromptCompletionOptions
-): Promise<string> {
+): Promise<ApiResponse<PromptCompletionResponse>> {
   const url = 'https://api.straico.com/v1/prompt/completion';
   const headers = buildHeaders(apiKey);
   const data = {
@@ -47,10 +29,7 @@ export async function getPromptCompletion(
 
     const responseData: ApiResponse<PromptCompletionResponse> =
       await response.json();
-    const messageContent =
-      responseData.data.completions[options.models[0]].completion.choices[0]
-        .message.content;
-    return messageContent;
+    return responseData;
   } catch (error) {
     console.error(error);
     throw error;
