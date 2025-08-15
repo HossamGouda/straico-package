@@ -68,7 +68,7 @@ export interface Rag {
   chunk_overlap: number;
   createdAt: string;
   updatedAt: string;
-  [key: string]: any; // For other potential fields
+  [key: string]: unknown;
 }
 
 export interface CreateRagOptions {
@@ -99,7 +99,7 @@ export interface RagCompletionResponse {
   references: {
     page_content: string;
     page: number;
-    [key: string]: any;
+    [key: string]: unknown;
   }[];
   file_name: string;
   coins_used: number;
@@ -155,7 +155,7 @@ export interface AgentPromptOptions {
 export interface Voice {
   id: string;
   name: string;
-  [key: string]: any; // For other potential fields
+  [key: string]: unknown;
 }
 
 export interface TTSOptions {
