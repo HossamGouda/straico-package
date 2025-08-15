@@ -1,6 +1,6 @@
 {
   "name": "straico-api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A lightweight and easy-to-use TypeScript library for interacting with the Straico API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
